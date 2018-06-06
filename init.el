@@ -325,9 +325,6 @@
 
 
 ;;********************my memo********************
-
-;;便利なキーバインド
-;;M-=でワードカウント C-u M-!でそこに実行結果を挿入 M-|でリージョンをコマンどに渡す
 (put 'downcase-region 'disabled nil)
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -335,3 +332,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
