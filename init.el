@@ -105,32 +105,7 @@
 ;;; ホイールマウス
 (mouse-wheel-mode t)
 (setq mouse-wheel-follow-mouse t)
-;; ;; マウスホイールでスクロール
-;; (defun scroll-down-with-lines ()
-;;   "" (interactive) (scroll-down 1))
-;; (defun scroll-up-with-lines ()
-;;    "" (interactive) (scroll-up 1))
-;; (global-set-key [mouse-4] 'scroll-down-with-lines)
-;; (global-set-key [mouse-5] 'scroll-up-with-lines)
-;; ;; スクロールステップ 1 に設定
-;; (setq scroll-step 1)
-;; (setq scroll-step 2)
 
-;; (defun scroll-down-with-lines ()
-;;   ""
-;;   (interactive)
-;;   (scroll-down 2)
-;;   )
-;; (defun scroll-up-with-lines ()
-;;    ""
-;;    (interactive)
-;;    (scroll-up 2)
-;;    )
-
-;; ;; 1 画面スクロール時に重複させる行数
-;; (setq next-screen-context-lines 10)
-;; ;; 1 画面スクロール時にカーソルの画面上の位置をなるべく変えない
-;; (setq scroll-preserve-screen-position t)
 (setq scroll-step 2)
 (defun scroll-down-with-lines ()
   ""
@@ -323,7 +298,6 @@
 ;; ヽ ＿＿　ノ \n")))
 (global-set-key (kbd "M-]") 'sachi-init)
 
-
 ;;********************my memo********************
 (put 'downcase-region 'disabled nil)
 (custom-set-faces
@@ -332,4 +306,3 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-
