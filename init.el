@@ -47,7 +47,7 @@
 (global-set-key [wheel-down] 'scroll-up-with-lines)
 ;; (require 'multi-term);;this is for multiterm
 ;; (setq multi-term-program shell-file-name)
-(global-set-key (kbd "M-m") 'eshell)
+
 (global-set-key (kbd "M-/") 'undo-tree-redo)
 (global-set-key (kbd "C-/") 'undo-tree) 
 (global-set-key (kbd "C-<") 'beginning-of-buffer);;バッファの先頭に
