@@ -31,6 +31,8 @@
 (dashboard-setup-startup-hook)
 (setq dashboard-items '((bookmarks . 5)
 			))
+
+
 ;;dashbordの設定
 (global-set-key (kbd "C-x M-d")
                 #'(lambda () (interactive)
