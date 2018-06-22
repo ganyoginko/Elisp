@@ -265,6 +265,17 @@
 ;; undo-tree を起動時に有効にする
 (global-undo-tree-mode t)
 
+;;`````````````````````flymake''''''''''''''''''''''
+
+(require 'flymake)
+(defun flymake-get-make-cmdline (source base-dir)
+  (list "make"
+        (list "-s" "-C"
+              base-dir
+              (concat "CHK_SOURCES=" source)
+              "SYNTAX_CHECK_MODE=1")))
+
+
 ;;&&&&&&&&&&&&&&&&&&&& my create &&&&&&&&&&&&&&&&&&&&
 
 ;; JIBANYAN ART
