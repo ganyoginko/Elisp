@@ -1,5 +1,5 @@
-; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
+; added by package.el.  this must come before configurations of
+;; installed packages.  don't delete this line.  if you don't want it,
 ;; just commnt it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
 ;; Emacs package system
@@ -31,6 +31,8 @@
 (dashboard-setup-startup-hook)
 (setq dashboard-items '((bookmarks . 5)
 			))
+
+
 ;;dashbordの設定
 (global-set-key (kbd "C-x M-d")
                 #'(lambda () (interactive)
@@ -40,14 +42,29 @@
 (line-number-mode 0) ;;モードラインに列を非表示
 (blink-cursor-mode 0) ;;カーソルの点滅
 (electric-pair-mode t) ;;かっこの自動表示
-(global-set-key (kbd "M-k") 'highlight-phrase);;high-light-phrase
 (add-to-list 'electric-pair-pairs '(?{ . ?}))
 (show-paren-mode 1);; かっこの光
-(global-set-key [wheel-up] 'scroll-down-with-lines)
-(global-set-key [wheel-down] 'scroll-up-with-lines)
+
+
 ;; (require 'multi-term);;this is for multiterm
 ;; (setq multi-term-program shell-file-name)
-(global-set-key (kbd "M-m") 'eshell)
+
+(setq scroll-margin 1)
+(global-set-key "\M-n" (lambda () (interactive) (scroll-up 1)))
+(global-set-key "\M-p" (lambda () (interactive) (scroll-down 1)))
+
+(setq scroll-conservatively 35
+  scroll-margin 0
+)
+
+(setq
+ mouse-wheel-scroll-amount ;;マウスホイール
+ '(1)
+ mouse-wheel-progressive-speed nil
+ )
+
+
+
 (global-set-key (kbd "M-/") 'undo-tree-redo)
 (global-set-key (kbd "C-/") 'undo-tree) 
 (global-set-key (kbd "C-<") 'beginning-of-buffer);;バッファの先頭に
@@ -97,51 +114,6 @@
       (set-frame-parameter nil 'alpha 85)
       (setq alpha-on-flag t)
       (message "alpha-on"))))
-
-(setq scroll-margin 1)
-(global-set-key "\M-n" (lambda () (interactive) (scroll-up 1)))
-(global-set-key "\M-p" (lambda () (interactive) (scroll-down 1)))
-
-;;; ホイールマウス
-(mouse-wheel-mode t)
-(setq mouse-wheel-follow-mouse t)
-;; ;; マウスホイールでスクロール
-;; (defun scroll-down-with-lines ()
-;;   "" (interactive) (scroll-down 1))
-;; (defun scroll-up-with-lines ()
-;;    "" (interactive) (scroll-up 1))
-;; (global-set-key [mouse-4] 'scroll-down-with-lines)
-;; (global-set-key [mouse-5] 'scroll-up-with-lines)
-;; ;; スクロールステップ 1 に設定
-;; (setq scroll-step 1)
-;; (setq scroll-step 2)
-
-;; (defun scroll-down-with-lines ()
-;;   ""
-;;   (interactive)
-;;   (scroll-down 2)
-;;   )
-;; (defun scroll-up-with-lines ()
-;;    ""
-;;    (interactive)
-;;    (scroll-up 2)
-;;    )
-
-;; ;; 1 画面スクロール時に重複させる行数
-;; (setq next-screen-context-lines 10)
-;; ;; 1 画面スクロール時にカーソルの画面上の位置をなるべく変えない
-;; (setq scroll-preserve-screen-position t)
-(setq scroll-step 2)
-(defun scroll-down-with-lines ()
-  ""
-  (interactive)
-  (scroll-down 2)
-  )
-(defun scroll-up-with-lines ()
-   ""
-   (interactive)
-   (scroll-up 2)
-   )
 
 
 ;; 警告音もフラッシュも全て無効(警告音が完全に鳴らなくなるので注意)
@@ -216,6 +188,7 @@
            (not (file-directory-p file)))
       (view-file file)
     ad-do-it))
+
 ;; 書き込み不能な場合は view-mode を抜けないように
 (defvar view-mode-force-exit nil)
 (defmacro do-not-exit-view-mode-unless-writable-advice (f)
@@ -290,6 +263,17 @@
 ;; undo-tree を起動時に有効にする
 (global-undo-tree-mode t)
 
+;;`````````````````````flymake''''''''''''''''''''''
+
+(require 'flymake)
+(defun flymake-get-make-cmdline (source base-dir)
+  (list "make"
+        (list "-s" "-C"
+              base-dir
+              (concat "CHK_SOURCES=" source)
+              "SYNTAX_CHECK_MODE=1")))
+
+
 ;;&&&&&&&&&&&&&&&&&&&& my create &&&&&&&&&&&&&&&&&&&&
 
 ;; JIBANYAN ART
@@ -323,11 +307,11 @@
 ;; ヽ ＿＿　ノ \n")))
 (global-set-key (kbd "M-]") 'sachi-init)
 
-
 ;;********************my memo********************
+;; highlight-phases
 (put 'downcase-region 'disabled nil)
 (custom-set-faces
- ;; custom-set-faces was added by Custom.
+
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
