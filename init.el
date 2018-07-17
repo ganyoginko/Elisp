@@ -31,8 +31,6 @@
 (dashboard-setup-startup-hook)
 (setq dashboard-items '((bookmarks . 5)
 			))
-
-
 ;;dashbordの設定
 (global-set-key (kbd "C-x M-d")
                 #'(lambda () (interactive)
@@ -45,9 +43,7 @@
 (add-to-list 'electric-pair-pairs '(?{ . ?}))
 (show-paren-mode 1);; かっこの光
 
-
-;; (require 'multi-term);;this is for multiterm
-;; (setq multi-term-program shell-file-name)
+(global-set-key "\C-x\C-b" 'buffer-menu) ;;C-x C-bを変更
 
 (setq scroll-margin 1)
 (global-set-key "\M-n" (lambda () (interactive) (scroll-up 1)))
@@ -62,8 +58,6 @@
  '(1)
  mouse-wheel-progressive-speed nil
  )
-
-
 
 (global-set-key (kbd "M-/") 'undo-tree-redo)
 (global-set-key (kbd "C-/") 'undo-tree) 
@@ -153,7 +147,6 @@
         ("l" . forward-char)
         ("j" . next-line)
         ("k" . previous-line)
-        ("e" . end-of-buffer)
         ("f" . forward-word)
         ("b" . backward-word)
         ("]" . forward-word)
@@ -211,8 +204,9 @@
 
 ;;####################    dired   #####################
 
-(load "dired-x") ;; dired をおぺんにする
+(load "dired-x") ;; dired を rewrite 
 (ffap-bindings) ;; C-x C-f の拡張
+(setq dired-dwim-target t)
 (setq ls-lisp-dirs-first t) ;;ディレクトリ先
 (when (eq system-type 'darwin);;'access-file' worked の処理
   (require 'ls-lisp)
@@ -308,7 +302,7 @@
 (global-set-key (kbd "M-]") 'sachi-init)
 
 ;;********************my memo********************
-;; highlight-phases
+;; highlight-phases M-s h .
 (put 'downcase-region 'disabled nil)
 (custom-set-faces
 
