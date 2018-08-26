@@ -2,9 +2,10 @@
 ;; installed packages.  don't delete this line.  if you don't want it,
 ;; just commnt it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
-;; Emacs package system
+;; Emacs package system C-x SPC
 (require 'package)
-(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
+(add-to-list 'package-archives
+	     '("melpa" . "http://melpa.milkbox.net/packages/"))
 (package-initialize)
 (setq package-archives
       '(("gnu" . "http://elpa.gnu.org/packages/")
@@ -17,11 +18,14 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (dashboard browse-kill-ring  multiple-cursors undo-tree smartrep  auto-complete))))
+    (dashboard browse-kill-ring  multiple-cursors
+	       undo-tree smartrep  auto-complete))))
 
 ;;~~~~~~~~~~~~~~~~~~~~display option~~~~~~~~~~~~~~~~~~~~
 ;; スタート時のスプラッシュ非表示
 (setq inhibit-startup-message t)
+;;スクロールバー非表示
+(scroll-bar-mode -1);
 ;; 起動画面をdashboardで変更
 (require 'dashboard)
 ;; Set the title
@@ -43,7 +47,7 @@
 (add-to-list 'electric-pair-pairs '(?{ . ?}))
 (show-paren-mode 1);; かっこの光
 
-(global-set-key "\C-x\C-b" 'buffer-menu) ;;C-x C-bを変更
+(global-set-key "\C-x\C-b" 'buffer-menu) ;;その場でbufferklist_
 
 (setq scroll-margin 1)
 (global-set-key "\M-n" (lambda () (interactive) (scroll-up 1)))
@@ -212,10 +216,10 @@
   (require 'ls-lisp)
   (setq ls-lisp-use-insert-directory-program nil))
 (require 'wdired)
-(define-key dired-mode-map "r" 'wdired-change-to-wdired-mode);; rでディレクトリバッファwrithng
+;; rでディレクトリバッファwrithng
+(define-key dired-mode-map "r" 'wdired-change-to-wdired-mode)
 
 ;;$$$$$$$$$$$$$$$$$$$$  autocomplete $$$$$$$$$$$$$$$$$$$
-
 (require 'auto-complete-config)
 ;; よくわからない
 (ac-config-default)
@@ -257,8 +261,7 @@
 ;; undo-tree を起動時に有効にする
 (global-undo-tree-mode t)
 
-;;`````````````````````flymake''''''''''''''''''''''
-
+;;'''''''''''''''''''' fly-make '''''''''''''''''''''
 (require 'flymake)
 (defun flymake-get-make-cmdline (source base-dir)
   (list "make"
@@ -310,4 +313,3 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-
