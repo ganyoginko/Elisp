@@ -120,13 +120,13 @@
 (global-set-key (kbd "C-M-s")
                 #'(lambda () (interactive)
                     (switch-to-buffer "*scratch*")))
- (setq initial-frame-alist
-       (append
-        '((top . 22)    ; フレームの Y 位置(ピクセル数)
-      (left . 0)    ; フレームの X 位置(ピクセル数)
-    (width . 100)    ; フレーム幅(文字数)
-     (height . 100)   ; フレーム高(文字数)
-     ) initial-frame-alist))
+;; (setq initial-frame-alist
+;;        (append
+;;         '((top . 22)    ; フレームの Y 位置(ピクセル数)
+;;       (left . 0)    ; フレームの X 位置(ピクセル数)
+;;     (width . 80)    ; フレーム幅(文字数)
+;;      (height . 10)   ; フレーム高(文字数)
+;;      ) initial-frame-alist))
 ;;カラーテーマの設定
 (add-to-list 'load-path "~/.emacs.d/color-theme-6.6.0")
 (require 'color-theme)
