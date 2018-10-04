@@ -2,10 +2,9 @@
 ;; installed packages.  don't delete this line.  if you don't want it,
 ;; just commnt it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
-;; Emacs package system C-x SPC
+;; Emacs package system
 (require 'package)
-(add-to-list 'package-archives
-	     '("melpa" . "http://melpa.milkbox.net/packages/"))
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
 (package-initialize)
 (setq package-archives
       '(("gnu" . "http://elpa.gnu.org/packages/")
@@ -18,14 +17,14 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (dashboard browse-kill-ring  multiple-cursors
-	       undo-tree smartrep  auto-complete))))
+    (dashboard browse-kill-ring  multiple-cursors undo-tree smartrep  auto-complete))))
+(setq make-backup-files nil)
+(scroll-bar-mode nil)
+(global-set-key "\C-x\C-b" 'buffer-menu)
 
 ;;~~~~~~~~~~~~~~~~~~~~display option~~~~~~~~~~~~~~~~~~~~
 ;; スタート時のスプラッシュ非表示
 (setq inhibit-startup-message t)
-;;スクロールバー非表示
-(scroll-bar-mode -1);
 ;; 起動画面をdashboardで変更
 (require 'dashboard)
 ;; Set the title
@@ -35,6 +34,8 @@
 (dashboard-setup-startup-hook)
 (setq dashboard-items '((bookmarks . 5)
 			))
+
+
 ;;dashbordの設定
 (global-set-key (kbd "C-x M-d")
                 #'(lambda () (interactive)
@@ -47,7 +48,9 @@
 (add-to-list 'electric-pair-pairs '(?{ . ?}))
 (show-paren-mode 1);; かっこの光
 
-(global-set-key "\C-x\C-b" 'buffer-menu) ;;その場でbufferklist_
+
+;; (require 'multi-term);;this is for multiterm
+;; (setq multi-term-program shell-file-name)
 
 (setq scroll-margin 1)
 (global-set-key "\M-n" (lambda () (interactive) (scroll-up 1)))
@@ -62,6 +65,8 @@
  '(1)
  mouse-wheel-progressive-speed nil
  )
+
+
 
 (global-set-key (kbd "M-/") 'undo-tree-redo)
 (global-set-key (kbd "C-/") 'undo-tree) 
@@ -121,12 +126,12 @@
                 #'(lambda () (interactive)
                     (switch-to-buffer "*scratch*")))
 ;; (setq initial-frame-alist
-;;        (append
-;;         '((top . 22)    ; フレームの Y 位置(ピクセル数)
-;;       (left . 0)    ; フレームの X 位置(ピクセル数)
-;;     (width . 80)    ; フレーム幅(文字数)
-;;      (height . 10)   ; フレーム高(文字数)
-;;      ) initial-frame-alist))
+;;       (append
+;;        '((top . 22)    ; フレームの Y 位置(ピクセル数)
+;;      (left . 0)    ; フレームの X 位置(ピクセル数)
+;;    (width . 100)    ; フレーム幅(文字数)
+;;     (height . 100)   ; フレーム高(文字数)
+;;     ) initial-frame-alist))
 ;;カラーテーマの設定
 (add-to-list 'load-path "~/.emacs.d/color-theme-6.6.0")
 (require 'color-theme)
@@ -151,6 +156,7 @@
         ("l" . forward-char)
         ("j" . next-line)
         ("k" . previous-line)
+        ("e" . end-of-buffer)
         ("f" . forward-word)
         ("b" . backward-word)
         ("]" . forward-word)
@@ -208,18 +214,17 @@
 
 ;;####################    dired   #####################
 
-(load "dired-x") ;; dired を rewrite 
+(load "dired-x") ;; dired-x
 (ffap-bindings) ;; C-x C-f の拡張
-(setq dired-dwim-target t)
 (setq ls-lisp-dirs-first t) ;;ディレクトリ先
 (when (eq system-type 'darwin);;'access-file' worked の処理
   (require 'ls-lisp)
   (setq ls-lisp-use-insert-directory-program nil))
 (require 'wdired)
-;; rでディレクトリバッファwrithng
-(define-key dired-mode-map "r" 'wdired-change-to-wdired-mode)
+(define-key dired-mode-map "r" 'wdired-change-to-wdired-mode);; rでwrithng
 
 ;;$$$$$$$$$$$$$$$$$$$$  autocomplete $$$$$$$$$$$$$$$$$$$
+
 (require 'auto-complete-config)
 ;; よくわからない
 (ac-config-default)
@@ -261,7 +266,8 @@
 ;; undo-tree を起動時に有効にする
 (global-undo-tree-mode t)
 
-;;'''''''''''''''''''' fly-make '''''''''''''''''''''
+;;`````````````````````flymake''''''''''''''''''''''
+
 (require 'flymake)
 (defun flymake-get-make-cmdline (source base-dir)
   (list "make"
@@ -305,7 +311,7 @@
 (global-set-key (kbd "M-]") 'sachi-init)
 
 ;;********************my memo********************
-;; highlight-phases M-s h .
+;; highlight-phases
 (put 'downcase-region 'disabled nil)
 (custom-set-faces
 
