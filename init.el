@@ -30,7 +30,7 @@
 ;; Set the title
 (setq dashboard-banner-logo-title "good job")
 ;; Set the banner
-(setq dashboard-startup-banner "~/.emacs.d/429760.png")
+(setq dashboard-startup-banner "~/.emacs.d/megaba.png")
 (dashboard-setup-startup-hook)
 (setq dashboard-items '((bookmarks . 5)
 			))
@@ -311,7 +311,7 @@
 (global-set-key (kbd "M-]") 'sachi-init)
 
 ;;********************my memo********************
-;; highlight-phases
+;; highlight-phases 
 (put 'downcase-region 'disabled nil)
 (custom-set-faces
 
