@@ -19,7 +19,7 @@
    (quote
     (dashboard browse-kill-ring  multiple-cursors undo-tree smartrep  auto-complete))))
 (setq make-backup-files nil)
-(scroll-bar-mode nil)
+(scroll-bar-mode 0)
 (global-set-key "\C-x\C-b" 'buffer-menu)
 
 ;;~~~~~~~~~~~~~~~~~~~~display option~~~~~~~~~~~~~~~~~~~~
@@ -133,9 +133,8 @@
 ;;     (height . 100)   ; フレーム高(文字数)
 ;;     ) initial-frame-alist))
 ;;カラーテーマの設定
-(add-to-list 'load-path "~/.emacs.d/color-theme-6.6.0")
-(require 'color-theme)
-(color-theme-initialize)
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+(load-theme 'zenburn t)
 ;;(color-theme-zenburn)よくワカンねぇけどうまく言ってる。
 ;;; region
 (transient-mark-mode t)
