@@ -1,7 +1,7 @@
-; added by package.el.  this must come before configurations of
+;; added by package.el.  this must come before configurations of
 ;; installed packages.  don't delete this line.  if you don't want it,
 ;; just commnt it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
+;; You may delete these explanatory comment
 ;; Emacs package system
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
@@ -17,18 +17,23 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (dashboard browse-kill-ring  multiple-cursors undo-tree smartrep  auto-complete))))
+    (highlight-indent-guides dashboard browse-kill-ring multiple-cursors undo-tree smartrep auto-complete))))
 (setq make-backup-files nil)
 (scroll-bar-mode 0)
 (global-set-key "\C-x\C-b" 'buffer-menu)
 
 ;;~~~~~~~~~~~~~~~~~~~~display option~~~~~~~~~~~~~~~~~~~~
+;; インデントのガイドライン
+(add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
+(setq highlight-indent-guides-method 'character)
+(setq highlight-indent-guides-character ?\#) 
+
 ;; スタート時のスプラッシュ非表示
 (setq inhibit-startup-message t)
 ;; 起動画面をdashboardで変更
 (require 'dashboard)
 ;; Set the title
-(setq dashboard-banner-logo-title "good job")
+(setq dashboard-banner-logo-title "")
 ;; Set the banner
 (setq dashboard-startup-banner "~/.emacs.d/megaba.png")
 (dashboard-setup-startup-hook)
@@ -219,7 +224,7 @@
 (when (eq system-type 'darwin);;'access-file' worked の処理
   (require 'ls-lisp)
   (setq ls-lisp-use-insert-directory-program nil))
-(require 'wdired)
+(autoload 'wdired "wdired" nil t)
 (define-key dired-mode-map "r" 'wdired-change-to-wdired-mode);; rでwrithng
 
 ;;$$$$$$$$$$$$$$$$$$$$  autocomplete $$$$$$$$$$$$$$$$$$$
@@ -238,7 +243,7 @@
 
 ;;%%%%%%%%%%%%%%%%%%%% multiple-cursors ################
 
-(require 'multiple-cursors) ;; 複数のカーソル
+(autoload 'multiple-cursors "multiple-cursors" nil t)
 (require 'smartrep)
 (declare-function smartrep-define-key "smartrep")
 (global-set-key (kbd "C-M-c") 'mc/edit-lines)
@@ -261,19 +266,19 @@
 
 ;;^^^^^^^^^^^^^^^^^^^^ undo-tree ^^^^^^^^^^^^^^^^^^^^
 
-(require 'undo-tree);;C-x u
+(autoload 'undo-tree "undo-tree" nil t);;C-x u
 ;; undo-tree を起動時に有効にする
 (global-undo-tree-mode t)
 
 ;;`````````````````````flymake''''''''''''''''''''''
 
-(require 'flymake)
-(defun flymake-get-make-cmdline (source base-dir)
-  (list "make"
-        (list "-s" "-C"
-              base-dir
-              (concat "CHK_SOURCES=" source)
-              "SYNTAX_CHECK_MODE=1")))
+;; (require 'flymake)
+;; (defun flymake-get-make-cmdline (source base-dir)
+;;   (list "make"
+;;         (list "-s" "-C"
+;;               base-dir
+;;               (concat "CHK_SOURCES=" source)
+;;               "SYNTAX_CHECK_MODE=1")))
 
 
 ;;&&&&&&&&&&&&&&&&&&&& my create &&&&&&&&&&&&&&&&&&&&
@@ -310,10 +315,10 @@
 (global-set-key (kbd "M-]") 'sachi-init)
 
 ;;********************my memo********************
-;; highlight-phases 
+;; highlight-phases
 (put 'downcase-region 'disabled nil)
 (custom-set-faces
-
+ ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
